@@ -14,11 +14,21 @@ function sendResponse(res, status, message) {
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
 }
 
+
+// app.get("/", async (req, res) => {
+//     const add = req.query.add;
+//     if (!add) {
+//         sendResponse(res, 400, "Please enter add sending");
+//         return;
+//     }
+
+
+// });
 app.get("/", async (req, res) => {
     const text = req.query.text;
 
     if (!text) {
-        sendResponse(res, 400, "Please enter text parameter");
+        sendResponse(res, 400, "Please enter phone target");
         return;
     }
 
@@ -49,6 +59,7 @@ app.get("/", async (req, res) => {
         sendResponse(res, 403, "Error connecting to openai");
     }
 });
+
 
 app.post("/", async (req, res) => {
     const text = req.body.text;
@@ -84,13 +95,4 @@ app.post("/", async (req, res) => {
     } catch (error) {
         sendResponse(res, 403, "Error connecting to openai");
     }
-});
-
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    sendResponse(res, 500, "Something broke!");
-});
-
-app.listen(3000, () => {
-    console.log("ChatGPT API is running on port 3000");
 });
