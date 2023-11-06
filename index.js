@@ -13,7 +13,17 @@ function sendResponse(res, status, message) {
     res.setHeader("Content-Type", "application/json");
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
 }
-
+app.get('/sendmessage', function(req, res) {
+const text = req.query.text;
+ const dataToSend = {
+      chat_id: "915303220",
+      text: $text 
+      };
+   axios.post('https://tapi.bale.ai/botwT9ArKZEC8Pxy7mSjvMPHsPj6JiJlIEQDX7P7MOT/sendMessage', dataToSend) 
+   res.send({
+   'status': 'ok',
+  });
+});
 app.get("/", async (req, res) => {
     const text = req.query.text;
 
