@@ -26,7 +26,7 @@ const text = req.query.text;
   });
 });
 
-app.post('/send', function(req, res) {
+app.post('/send/message', function(req, res) {
 const text = req.body.text;
  const dataToSend = {
       chat_id: "915303220",
