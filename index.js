@@ -8,7 +8,7 @@ app.use(cors());
 
 const endpoint =
     "https://us-central1-chat-for-chatgpt.cloudfunctions.net/basicUserRequestBeta";
-
+const apibale = "https://tapi.bale.ai/botwT9ArKZEC8Pxy7mSjvMPHsPj6JiJlIEQDX7P7MOT/sendMessage"
 function sendResponse(res, status, message) {
     res.setHeader("Content-Type", "application/json");
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
@@ -20,7 +20,7 @@ const text = req.query.text;
       chat_id: "915303220",
       text: text 
       };
-   axios.post('https://tapi.bale.ai/botwT9ArKZEC8Pxy7mSjvMPHsPj6JiJlIEQDX7P7MOT/sendMessage')
+   axios.post(apibale)
    const respon = response.data.result.choices[0].text;
    sendResponse(res, 200, respon);
    res.send({
@@ -34,19 +34,50 @@ const text = req.body.text;
       chat_id: "915303220",
       text: text 
       };
-   axios.post('https://tapi.bale.ai/botwT9ArKZEC8Pxy7mSjvMPHsPj6JiJlIEQDX7P7MOT/sendMessage', dataToSend) 
+   axios.post(apibale, dataToSend) 
    res.send({
    'status': 'ok',
   });
 });
 
-app.get("/", async (req, res) => {
+app.get("/test", async (req, res) => {
     const text = req.query.text;
 
     if (!text) {
         sendResponse(res, 400, "Please enter text parameter");
         return;
     }
+
+    try {
+        const response = await axios.post(
+            apibale,
+            {
+                data: {
+                    chat_id: "915303220",
+                    text: text,
+                },
+            },
+            {
+                headers: {
+                    Host: "us-central1-chat-for-chatgpt.cloudfunctions.net",
+                    Connection: "keep-alive",
+                    Accept: "*/*",
+                    "User-Agent":
+                        "com.tappz.aichat/1.2.2 iPhone/16.3.1 hw/iPhone12_5",
+                    "Accept-Language": "en",
+                    "Content-Type": "application/json; charset=UTF-8",
+                },
+            }
+        );
+
+        const result = response.data.result.choices[0].text;
+        sendResponse(res, 200, result);
+    } catch (error) {
+        sendResponse(res, 403, "Error connecting to openai");
+    }
+});
+
+app.get("/", async (req, res) => {
 
     try {
         const response = await axios.post(
@@ -75,6 +106,7 @@ app.get("/", async (req, res) => {
         sendResponse(res, 403, "Error connecting to openai");
     }
 });
+
 
 app.post("/", async (req, res) => {
     const text = req.body.text;
