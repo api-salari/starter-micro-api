@@ -59,12 +59,6 @@ app.get("/test", async (req, res) => {
             },
             {
                 headers: {
-                    Host: "us-central1-chat-for-chatgpt.cloudfunctions.net",
-                    Connection: "keep-alive",
-                    Accept: "*/*",
-                    "User-Agent":
-                        "com.tappz.aichat/1.2.2 iPhone/16.3.1 hw/iPhone12_5",
-                    "Accept-Language": "en",
                     "Content-Type": "application/json; charset=UTF-8",
                 },
             }
