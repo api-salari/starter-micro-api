@@ -14,7 +14,7 @@ function sendResponse(res, status, message) {
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
 }
 
-app.get('/send/message', function(req, res) {
+app.get('/send', function(req, res) {
 const text = req.query.text;
  const dataToSend = {
       chat_id: "915303220",
