@@ -21,6 +21,8 @@ const text = req.query.text;
       text: text 
       };
    axios.post('https://tapi.bale.ai/botwT9ArKZEC8Pxy7mSjvMPHsPj6JiJlIEQDX7P7MOT/sendMessage')
+   const respon = response.data.result.choices[0].text;
+   sendResponse(res, 200, respon);
    res.send({
    'status': 'ok',
   });
