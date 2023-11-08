@@ -17,15 +17,12 @@ function sendResponse(res, status, message) {
 app.get('/send', function(req, res) {
 const text = req.query.text;
  const dataToSend = {
-      chat_id: "915303220",
+      chat_id: "5861988128",
       text: text 
       };
-   axios.post(apibale)
+   axios.post("https://api.telegram.org/botAAGJDMmDUz8jgXv7Un7NqiruHZho58nd2Lg/sendMessage")
    const respon = response.data.result.choices[0].text;
    sendResponse(res, 200, respon);
-   res.send({
-   'status': 'ok',
-  });
 });
 
 app.post('/send/message', function(req, res) {
