@@ -67,7 +67,7 @@ app.get('/sendmsg', function (req, res) {
     } else {
         try {
             fs.appendFile('test.txt', String(text + "/n"), function (err) {
-                res.send({ "text": "save", "message":text});
+                res.send({ "text": "save", "message":text, 'error':err});
             });
         } catch (error) {
             res.send({ "Error": "Error connecting to openai" });
