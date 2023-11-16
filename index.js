@@ -16,10 +16,10 @@ function sendResponse(res, status, message) {
 }
 
 app.get('/test', function (req, res) {
-    const text = req.query.text;
-    fs.appendFile('message.txt', String(text + "/n"), function (err) {
-    res.send({ "text": "save", "message":text, "status":"200"});
-      });
+    fs.appendFile('message.txt', 'Hello content!+', function (err) {
+        const text = req.query.text;
+        res.send({ "text": "save", "message":text, "status":"200"});
+    });
 });
 
 app.get('/getmsg', function (req, res) {
