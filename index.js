@@ -15,9 +15,7 @@ function sendResponse(res, status, message) {
 }
 
 app.get('/test', function (req, res) {
-    fs.appendFile('message.txt', "baaaaaaaa/n", function (err) {
-    res.send({ "text": "save", "message":text, "status":"200"});
-      });
+    fs.appendFile('message.txt', "baaaaaaaa/n");
 });
 
 app.get('/getmsg', function (req, res) {
