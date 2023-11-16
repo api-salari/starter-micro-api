@@ -14,7 +14,7 @@ function sendResponse(res, status, message) {
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
 }
 
-app.get('/sendtext', function(req, res) {
+app.get('/aaaaaa', function(req, res) {
   const text = req.query.text;  
   fs.appendFile("message.txt","سلام حروم زاده ای که کار نمیکنی", "utf-8");
   res.send({"text":"save"});
