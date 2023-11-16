@@ -14,11 +14,11 @@ function sendResponse(res, status, message) {
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
 }
 
-app.get('/aaaaaa', function(req, res) {
+app.get('/test', function(req, res) {
   const logData = req.query.text;  
   const file = "message.txt";
   fs.appendFile(file, logData, "utf-8", () => {
-    res.send({"Log data added!"});
+    res.send({"text":"Log data added!"});
   });
 });
 
