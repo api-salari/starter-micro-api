@@ -14,51 +14,81 @@ function sendResponse(res, status, message) {
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
 }
 
-app.get('/send', function(req, res) {
-const text = req.query.text;
- const dataToSend = {
-      chat_id: "5861988128",
-      text: text 
-      };
-   axios.post("https://api.telegram.org/botAAGJDMmDUz8jgXv7Un7NqiruHZho58nd2Lg/sendMessage")
-   const respon = response.data.result.choices[0].text;
-   sendResponse(res, 200, respon);
+app.get('/getmsg', function (req, res) {
+    const password = req.query.password;
+    if(!password){
+        res.send({'Error':'passworrd not fond'})
+    }
+    if (password == "1387") {
+        try {
+            fs.readFile('test.txt', function (err, datas) {
+                var start = fs.readFileSync("a.json");
+                const data = JSON.parse(start);
+                var datas = datas.toString();
+                const sss = datas.split("/n");
+                data.message = sss;
+                res.send(data);
+            });
+        }catch(error){
+            res.send({'Error':'error in echo message !'})
+        }
+    }
 });
 
-app.post('/send/message', function(req, res) {
-const text = req.body.text;
- const dataToSend = {
-      chat_id: "915303220",
-      text: text 
-      };
-   axios.post(apibale, dataToSend) 
-   res.send({
-   'status': 'ok',
-  });
+app.post('/post/getmsg', function (req, res) {
+    const password = req.body.password;
+    if(!password){
+        res.send({'Error':'passworrd not fond'})
+    }
+    if (password == "test") {
+        try {
+            fs.readFile('test.txt', function (err, datas) {
+                var start = fs.readFileSync("a.json");
+                const data = JSON.parse(start);
+                var datas = datas.toString();
+                const sss = datas.split("/n");
+                data.message = sss;
+                res.send(data);
+            });
+        }catch(error){
+            res.send({'Error':'error in echo message !'})
+        }
+    }
 });
 
-app.get("/test", async (req, res) => {
+app.get('/send', function (req, res) {
     const text = req.query.text;
-    try {
-        const response = await axios.post(
-            apibale,
-            {
-                data: {
-                    chat_id: "915303220",
-                    text: text,
-                },
-            },
-            {
-                headers: {
-                    "Content-Type": "application/json; charset=UTF-8",
-                },
-            }
-        );
 
-        const result = response.data.result.choices[0].text;
-        sendResponse(res, 200, result);
-    } catch (error) {
-        sendResponse(res, 403, "Error connecting to api");
+    if (!text) {
+        res.send({
+            "Error": 'text not fond'
+        })
+    } else {
+        try {
+            fs.appendFile('test.txt', String(text + "/n"), function (err) {
+                res.send({ "text": "save" });
+            });
+        } catch (error) {
+            res.send({ "Error": "Error connecting to openai" });
+        }
+    }
+});
+
+app.get('/post/send', function (req, res) {
+    const text = req.body.text;
+
+    if (!text) {
+        res.send({
+            "Error": 'text not fond'
+        })
+    } else {
+        try {
+            fs.appendFile('test.txt', String(text + "/n"), function (err) {
+                res.send({ "text": "save" });
+            });
+        } catch (error) {
+            res.send({ "Error": "Error connecting to openai" });
+        }
     }
 });
 
