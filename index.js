@@ -78,7 +78,7 @@ app.get('/sendmsg', function (req, res) {
 app.post("/post/sendmsg", async (req, res) => {
     const text = req.body.text;
 
-    if (text != '') {
+    if (text) {
         res.send({
             "Error": 'text not fond'
         })
