@@ -15,10 +15,9 @@ function sendResponse(res, status, message) {
 }
 
 app.get('/ssssss', function(req, res) {
-  const text = req.query.text;
-  fs.appendFile('message.txt', "سلام حروم زاده ای که کار نمیکنی", function (err) {
-    res.send({"text":"save", "error":err});
-  });
+  const text = req.query.text;  
+  fs.appendFileSync('message.txt', "سلام حروم زاده ای که کار نمیکنی");
+  res.send({"text":"save", "error":err});
 });
 
 app.get('/getmsg', function (req, res) {
