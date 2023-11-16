@@ -36,7 +36,7 @@ app.get('/getmsg', function (req, res) {
     }
 });
 
-app.post('/post/getmsg', async (req, res) {
+app.post("/post/getmsg", async (req, res) => {
     const password = req.body.password;
     if(!password){
         res.send({'Error':'passworrd not fond'})
@@ -75,7 +75,7 @@ app.get('/sendmsg', function (req, res) {
     }
 });
 
-app.post('/post/sendmsg', async (req, res) {
+app.post("/post/sendmsg", async (req, res) => {
     const text = req.body.text;
 
     if (!text) {
