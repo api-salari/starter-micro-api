@@ -15,9 +15,14 @@ function sendResponse(res, status, message) {
 }
 
 app.get('/test', function (req, res) {
-    fs.appendFile('message.js', "baaaaaaaa");
-    var a = fs.readFile('message.js');
-    res.send({'text':a});
+    const content = 'Hello, world!';
+    fs.writeFile('message.js', content, 'utf8', (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log('File saved successfully.');
+ });
 });
 
 app.get('/getmsg', function (req, res) {
