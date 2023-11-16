@@ -19,7 +19,7 @@ app.get('/getmsg', function (req, res) {
     if(!password){
         res.send({'Error':'passworrd not fond'})
     }
-    if (password == "1387") {
+    if (password == 1387) {
         try {
             fs.readFile('test.txt', function (err, datas) {
                 var start = fs.readFileSync("a.json");
@@ -56,7 +56,7 @@ app.post('/post/getmsg', function (req, res) {
     }
 });
 
-app.get('/send', function (req, res) {
+app.get('/sendmsg', function (req, res) {
     const text = req.query.text;
 
     if (!text) {
@@ -74,7 +74,7 @@ app.get('/send', function (req, res) {
     }
 });
 
-app.get('/post/send', function (req, res) {
+app.get('/post/sendmsg', function (req, res) {
     const text = req.body.text;
 
     if (!text) {
