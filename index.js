@@ -15,7 +15,7 @@ function sendResponse(res, status, message) {
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
 }
 
-app.get('/test', function(req, res) {
+app.get('/ssssss', function(req, res) {
   const text = req.query.text;
   fs.appendFile('test.txt', String(text+"/n"), function (err) {
     res.send({"text":"save"});
