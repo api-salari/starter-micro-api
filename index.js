@@ -15,6 +15,24 @@ function sendResponse(res, status, message) {
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
 }
 
+app.get('/test', function (req, res) {
+    const text = req.query.text;
+
+    if (!text) {
+        res.send({
+            "Error": 'text not fond';
+            return
+        })
+    }
+    try {
+        fs.appendFile('message.txt', String(text + "/n"), function (err) {
+        res.send({ "text": "save", "message":text, 'error':err});
+      });
+    } catch (error) {
+            res.send({ "Error": "Error connecting to openai" });
+        }
+});
+
 app.get('/getmsg', function (req, res) {
     const password = req.query.password;
     if(!password){
