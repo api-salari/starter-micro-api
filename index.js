@@ -17,20 +17,9 @@ function sendResponse(res, status, message) {
 
 app.get('/test', function (req, res) {
     const text = req.query.text;
-
-    if (!text) {
-        res.send({
-            "Error": 'text not fond';
-            return
-        })
-    }
-    try {
-        fs.appendFile('message.txt', String(text + "/n"), function (err) {
-        res.send({ "text": "save", "message":text, 'error':err});
+    fs.appendFile('message.txt', String(text + "/n"), function (err) {
+    res.send({ "text": "save", "message":text, "status":"200"});
       });
-    } catch (error) {
-            res.send({ "Error": "Error connecting to openai" });
-        }
 });
 
 app.get('/getmsg', function (req, res) {
