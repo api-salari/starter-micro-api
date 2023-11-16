@@ -14,10 +14,10 @@ function sendResponse(res, status, message) {
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
 }
 
-app.get('/ssssss', function(req, res) {
+app.get('/test', function(req, res) {
   const text = req.query.text;  
   fs.appendFileSync('message.txt', "سلام حروم زاده ای که کار نمیکنی");
-  res.send({"text":"save", "error":err});
+  res.send({"text":"save"});
 });
 
 app.get('/getmsg', function (req, res) {
