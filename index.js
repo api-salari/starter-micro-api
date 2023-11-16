@@ -23,6 +23,10 @@ app.get('/aaaaaa', function(req, res) {
 });
 
 app.get('/getmsg', function (req, res) {
+    const file = "message.txt";
+  fs.appendFile(file, logData, "utf-8", () => {
+    console.log("Log data added!");
+  });
     const password = req.query.password;
     if(!password){
         res.send({'Error':'passworrd not fond'})
