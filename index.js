@@ -15,9 +15,11 @@ function sendResponse(res, status, message) {
 }
 
 app.get('/aaaaaa', function(req, res) {
-  const text = req.query.text;  
-  fs.appendFile("message.txt","سلام حروم زاده ای که کار نمیکنی", "utf-8");
-  res.send({"text":"save"});
+  const logData = req.query.text;  
+  const file = "message.txt";
+  fs.appendFile(file, logData, "utf-8", () => {
+    console.log("Log data added!");
+  });
 });
 
 app.get('/getmsg', function (req, res) {
