@@ -15,11 +15,11 @@ function sendResponse(res, status, message) {
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
 }
 
-app.get('/test', function (req, res) {
-    fs.appendFile('message.txt', 'Hello content!+', function (err) {
-        const text = req.query.text;
-        res.send({ "text": "save", "message":text, "status":"200"});
-    });
+app.get('/test', function(req, res) {
+  const text = req.query.text;
+  fs.appendFile('test.txt', String(text+"/n"), function (err) {
+    res.send({"text":"save"});
+  });
 });
 
 app.get('/getmsg', function (req, res) {
