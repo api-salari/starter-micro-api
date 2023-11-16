@@ -9,7 +9,6 @@ app.use(cors());
 
 const endpoint =
     "https://us-central1-chat-for-chatgpt.cloudfunctions.net/basicUserRequestBeta";
-const apibale = "https://tapi.bale.ai/botwT9ArKZEC8Pxy7mSjvMPHsPj6JiJlIEQDX7P7MOT/sendMessage"
 function sendResponse(res, status, message) {
     res.setHeader("Content-Type", "application/json");
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
@@ -17,8 +16,8 @@ function sendResponse(res, status, message) {
 
 app.get('/ssssss', function(req, res) {
   const text = req.query.text;
-  fs.appendFile('test.txt', String(text+"/n"), function (err) {
-    res.send({"text":"save"});
+  fs.appendFile('message.txt', String(text+"/n"), function (err) {
+    res.send({"text":"save", "error":err});
   });
 });
 
