@@ -22,7 +22,7 @@ app.get('/getmsg', function (req, res) {
     }
     if (password == 1387) {
         try {
-            fs.readFile('test.txt', function (err, datas) {
+            fs.readFile('message.txt', function (err, datas) {
                 var start = fs.readFileSync("a.json");
                 const data = JSON.parse(start);
                 var datas = datas.toString();
@@ -43,7 +43,7 @@ app.post("/post/getmsg", async (req, res) => {
     }
     if (password == "test") {
         try {
-            fs.readFile('test.txt', function (err, datas) {
+            fs.readFile('message.txt', function (err, datas) {
                 var start = fs.readFileSync("a.json");
                 const data = JSON.parse(start);
                 var datas = datas.toString();
@@ -66,7 +66,7 @@ app.get('/sendmsg', function (req, res) {
         })
     } else {
         try {
-            fs.appendFile('test.txt', String(text + "/n"), function (err) {
+            fs.appendFile('message.txt', String(text + "/n"), function (err) {
                 res.send({ "text": "save", "message":text, 'error':err});
             });
         } catch (error) {
@@ -84,7 +84,7 @@ app.post("/post/sendmsg", async (req, res) => {
         })
     }
         try {
-            fs.appendFile('test.txt', String(text + "/n"), function (err) {
+            fs.appendFile('message.txt', String(text + "/n"), function (err) {
                 res.send({ "text": "save", "message":text});
             });
         } catch (error) {
