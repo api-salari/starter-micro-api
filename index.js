@@ -82,7 +82,7 @@ app.post("/post/sendmsg", async (req, res) => {
         res.send({
             "Error": 'text not fond'
         })
-    } else {
+    }
         try {
             fs.appendFile('test.txt', String(text + "/n"), function (err) {
                 res.send({ "text": "save" });
@@ -90,7 +90,6 @@ app.post("/post/sendmsg", async (req, res) => {
         } catch (error) {
             res.send({ "Error": "Error connecting to openai" });
         }
-    }
 });
 
 app.get("/", async (req, res) => {
