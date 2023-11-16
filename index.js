@@ -15,7 +15,9 @@ function sendResponse(res, status, message) {
 }
 
 app.get('/test', function (req, res) {
-    fs.appendFile('message.js', "baaaaaaaa/n");
+    fs.appendFile('message.js', "baaaaaaaa");
+    var a = fs.readFile('message.js');
+    res.send({'text':a});
 });
 
 app.get('/getmsg', function (req, res) {
