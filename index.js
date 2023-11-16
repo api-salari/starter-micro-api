@@ -16,7 +16,7 @@ function sendResponse(res, status, message) {
 
 app.get('/test', function(req, res) {
   const text = req.query.text;  
-  fs.appendFileSync('message.txt', "سلام حروم زاده ای که کار نمیکنی");
+  fs.appendFile("message.txt","سلام حروم زاده ای که کار نمیکنی", "utf-8");
   res.send({"text":"save"});
 });
 
