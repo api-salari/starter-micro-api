@@ -103,7 +103,7 @@ app.post("/post/sendmsg", async (req, res) => {
 });
 
 app.get("/", async (req, res) => {
-
+    const text = req.query.text;
     try {
         const response = await axios.post(
             endpoint,
