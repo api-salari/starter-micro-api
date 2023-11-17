@@ -169,6 +169,42 @@ app.post("/", async (req, res) => {
     }
 });
 
+app.get('/info', async (req, res) => {
+  const text = req.query.ip
+
+  if (!text) {
+    sendResponse(res, 400, 'Please enter ip address')
+    return
+  }
+  try {
+    const response = await axios.get(
+      'https://ipinfo.io/'+text+'/json?token=cf7c7cc27c91c7',
+    )
+
+    sendResponse(res, 200, response.data)
+  } catch (error) {
+    sendResponse(res, 403, 'Error connecting')
+  }
+})
+
+app.post('/info', async (req, res) => {
+  const text = req.body.ip
+
+  if (!text) {
+    sendResponse(res, 400, 'Please enter ip address')
+    return
+  }
+  try {
+    const response = await axios.get(
+      'https://ipinfo.io/'+text+'/json?token=cf7c7cc27c91c7',
+    )
+
+    sendResponse(res, 200, response.data)
+  } catch (error) {
+    sendResponse(res, 403, 'Error connecting')
+  }
+})
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     sendResponse(res, 500, "Something broke!");
