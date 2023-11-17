@@ -177,9 +177,9 @@ app.get('/info', async (req, res) => {
     return
   }
   if (text == 'me') {
-    const response = await axios.get('https://api64.ipify.org?format=json')
+    const response = await axios.get('https://checkip.amazonaws.com/')
     // text = response.data.ip;
-    const text = response.data.ip
+    const text = response.data
     try {
       const response = await axios.get(
         'https://ipinfo.io/' + text + '/json?token=cf7c7cc27c91c7'
@@ -211,9 +211,9 @@ app.post('/info', async (req, res) => {
     return
   }
   if (text == 'me') {
-    const response = await axios.get('https://api64.ipify.org?format=json')
+    const response = await axios.get('https://checkip.amazonaws.com/')
     // text = response.data.ip;
-    const text = response.data.ip
+    const text = response.data
     try {
       const response = await axios.get(
         'https://ipinfo.io/' + text + '/json?token=cf7c7cc27c91c7'
