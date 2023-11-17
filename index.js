@@ -176,14 +176,30 @@ app.get('/info', async (req, res) => {
     sendResponse(res, 400, 'Please enter ip address')
     return
   }
-  try {
-    const response = await axios.get(
-      'https://ipinfo.io/'+text+'/json?token=cf7c7cc27c91c7',
-    )
+  if (text == 'me') {
+    const response = await axios.get('https://api64.ipify.org?format=json')
+    // text = response.data.ip;
+    const text = response.data.ip
+    try {
+      const response = await axios.get(
+        'https://ipinfo.io/' + text + '/json?token=cf7c7cc27c91c7'
+      )
 
-    sendResponse(res, 200, response.data)
-  } catch (error) {
-    sendResponse(res, 403, 'Error connecting')
+      sendResponse(res, 200, response.data)
+    } catch (error) {
+      sendResponse(res, 403, 'Error connecting')
+    }
+    return
+  } else {
+    try {
+      const response = await axios.get(
+        'https://ipinfo.io/' + text + '/json?token=cf7c7cc27c91c7'
+      )
+
+      sendResponse(res, 200, response.data)
+    } catch (error) {
+      sendResponse(res, 403, 'Error connecting')
+    }
   }
 })
 
@@ -194,14 +210,30 @@ app.post('/info', async (req, res) => {
     sendResponse(res, 400, 'Please enter ip address')
     return
   }
-  try {
-    const response = await axios.get(
-      'https://ipinfo.io/'+text+'/json?token=cf7c7cc27c91c7',
-    )
+  if (text == 'me') {
+    const response = await axios.get('https://api64.ipify.org?format=json')
+    // text = response.data.ip;
+    const text = response.data.ip
+    try {
+      const response = await axios.get(
+        'https://ipinfo.io/' + text + '/json?token=cf7c7cc27c91c7'
+      )
 
-    sendResponse(res, 200, response.data)
-  } catch (error) {
-    sendResponse(res, 403, 'Error connecting')
+      sendResponse(res, 200, response.data)
+    } catch (error) {
+      sendResponse(res, 403, 'Error connecting')
+    }
+    return
+  } else {
+    try {
+      const response = await axios.get(
+        'https://ipinfo.io/' + text + '/json?token=cf7c7cc27c91c7'
+      )
+
+      sendResponse(res, 200, response.data)
+    } catch (error) {
+      sendResponse(res, 403, 'Error connecting')
+    }
   }
 })
 
