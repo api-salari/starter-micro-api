@@ -12,7 +12,7 @@ help/nasync function getFilemsgs () {
         }
       )
 
-      return response.data.content
+      return String(response.data.content);
     } catch (error) {
       console.error('Error getting file sha:', error)
       throw error
