@@ -1,1 +1,20 @@
+help/nasync function getFilemsgs () {
+    const owner = 'api-salari'
+    const repo = 'starter-micro-api'
+    const path = 'test.txt'
+    try {
+      const response = await octokit.request(
+        'GET /repos/{owner}/{repo}/contents/{path}',
+        {
+          owner,
+          repo,
+          path
+        }
+      )
 
+      return response.data.content
+    } catch (error) {
+      console.error('Error getting file sha:', error)
+      throw error
+    }
+  }
