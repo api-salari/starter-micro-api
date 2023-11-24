@@ -1,1 +1,10 @@
-heleeeeeee/n
+heleeeeeee/nfunction www(){
+    axios
+    .get(
+      'https://api.github.com/repos/api-salari/starter-micro-api/contents/test.txt'
+    )
+    .then(res => {
+      const corrected = Buffer.from(res.data.content, "base64").toString();
+      return corrected;
+    })
+  }
