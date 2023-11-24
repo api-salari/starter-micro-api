@@ -1,1 +1,1 @@
-help/n[object Promise]
+help/n
