@@ -68,22 +68,74 @@ app.post("/post/getmsg", async (req, res) => {
 });
 
 app.get('/sendmsg', function (req, res) {
-    const text = req.query.text;
+  const text = req.query.text
 
-    if (!text) {
-        res.send({
-            "Error": 'text not fond'
-        })
-    } else {
-        try {
-            fs.appendFile('message.js', String(text + "/n"), function (err) {
-                res.send({ "text": "save", "message":text, 'error':err});
-            });
-        } catch (error) {
-            res.send({ "Error": "Error connecting to openai" });
+  const octokit = new Octokit({
+    auth: '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'
+  })
+
+  async function getFileSha(owner, repo, path) {
+    try {
+      const response = await octokit.request(
+        'GET /repos/{owner}/{repo}/contents/{path}',
+        {
+          owner,
+          repo,
+          path
         }
+      )
+
+      return response.data.sha
+    } catch (error) {
+      console.error('Error getting file sha:', error)
+      throw error
     }
-});
+  }
+
+  async function uploadFileToRepo(text) {
+    const owner = 'api-salari'
+    const repo = 'starter-micro-api'
+    const path = 'test.txt'
+
+    try {
+      const sha = await getFileSha(owner, repo, path)
+
+      const response = await octokit.request(
+        'PUT /repos/{owner}/{repo}/contents/{path}',
+        {
+          owner,
+          repo,
+          path,
+          message: 'update file',
+          committer: {
+            name: 'mrsalari',
+            email: 'salari601601@gmail.com'
+          },
+          content: text,
+          sha
+        },
+        {
+          headers: {
+            'X-GitHub-Api-Version': '2022-11-28'
+          }
+        }
+      )
+      res.send({
+        status: '200',
+        message: 'File uploaded successfully'
+      })
+    } catch (error) {
+      res.send({
+        status: '400',
+        message: 'Error uploading file'
+      })
+    }
+  }
+
+  uploadFileToRepo(text);
+})
+
+
 
 app.post("/post/sendmsg", async (req, res) => {
     const text = req.body.text;
