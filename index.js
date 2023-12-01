@@ -67,7 +67,7 @@ app.post("/post/getmsg", async (req, res) => {
     }
 });
 
-app.get('/sendmsg', function (req, res) {
+app.get('/sendinggithub', function (req, res) {
   const text = req.query.text
 
   const octokit = new Octokit({
