@@ -1,5 +1,6 @@
 const express = require("express");
 const axios = require("axios");
+const list = require('./list')
 var fs = require('fs');
 const cors = require("cors");
 
@@ -43,6 +44,43 @@ app.get('/getmsg', function (req, res) {
         }catch(error){
             res.send({'Error':'error in echo message !'})
         }
+    }
+});
+
+app.get("/sms", async (req, res) => {
+    const validate = req.query.phone;
+    if (validate) {
+        list.api.forEach(function (item) {
+            if ("headers" in item) {
+                var headers = item.headers
+            } else {
+                var headers = {}
+    
+            }
+            if (item.method == "POST") {
+                axios.post(item.url, item.data, headers).then(function () {
+                    console.log(item.name);
+                }).catch(error => {
+                    console.log("ERROR");
+    
+    
+                })
+    
+    
+            }
+    
+            else {
+                axios.get(item.url.headers).then(function () {
+                    console.log(item.name);
+                }).catch(error => {
+    
+                    console.log("ERROR");
+    
+                })
+            }
+        })
+    } else {
+        console.log("Invalid Format");
     }
 });
 
