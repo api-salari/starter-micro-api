@@ -10,7 +10,6 @@ app.use(cors());
 
 
 const BaleBot = require('node-telegram-bot-api');
-const axios = require('axios');
 
 const token = '1941753378:DQ4zCpbQLTLc8bqodRkApfv1uZS7aTmmuUbLTmEx';
 
