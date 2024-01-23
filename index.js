@@ -390,6 +390,6 @@ app.use((err, req, res, next) => {
     sendResponse(res, 500, "Something broke!");
 });
 
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log("ChatGPT API is running on port 3000");
 });
