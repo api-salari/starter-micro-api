@@ -8,6 +8,65 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+
+const BaleBot = require('node-telegram-bot-api');
+const axios = require('axios');
+
+const token = '1941753378:DQ4zCpbQLTLc8bqodRkApfv1uZS7aTmmuUbLTmEx';
+
+const options = {
+    baseApiUrl: 'https://tapi.bale.ai',
+};
+
+const bot = new BaleBot(token, options);
+
+bot.onText(/\/start/, async (msg) => {
+    const chatId = msg.chat.id;
+    const msg_id = msg.message_id;
+    await bot.sendMessage(chatId, 'سلام! به ربات ما خوش آمدید.\n\nاین ربات یک هوش مصنوعی است و شما به کمک آن می توانید به پاسخ سوال هایتان برسید.', {
+        reply_to_message_id: msg_id
+    });
+});
+
+bot.on('message', async (msg) => {
+    if (msg.text.toString().toLowerCase().indexOf('/start') === 0) {
+        return;
+    }
+
+    const chatId = msg.chat.id;
+    const userText = msg.text;
+    const msg_id = msg.message_id;
+
+    const please = await bot.sendMessage(chatId, 'لطفا کمی صبر کنید...', {
+        reply_to_message_id: msg_id
+    });
+
+    try {
+        const response = await axios.post('https://chatgpt-api3.onrender.com', {
+            text: userText
+        });
+
+        if (response.status === 200) {
+            const replyText = response.data.message;
+            await bot.editMessageText(replyText, {
+                chat_id: chatId,
+                message_id: please.message_id
+            });
+        } else {
+            throw new Error('متاسفانه خطایی رخ داده است.');
+        }
+    } catch (error) {
+        await bot.editMessageText('متاسفانه خطایی رخ داده است.', {
+            chat_id: chatId,
+            message_id: please.message_id
+        });
+    }
+});
+
+bot.startPolling();
+
+
+
 const endpoint =
     "https://us-central1-chat-for-chatgpt.cloudfunctions.net/basicUserRequestBeta";
 function sendResponse(res, status, message) {
