@@ -39,8 +39,8 @@ app.get("/test2", async (req, res) => {
         for (const x of link) {
             for (const a of x["images"]) {
                 //arr.push(a);
-                for (const b of a) {
-                    arr.push(b["id"]);
+                for (const h of a) {
+                    arr.push(h);
                 };
             };
         };
