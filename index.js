@@ -39,7 +39,7 @@ app.get("/test2", async (req, res) => {
         for (const x of link) {
             for (const a of x["images"]) {
                 for (const b of a) {
-                    arr.push("https://image.lexica.art/md2/"+String(b["id"]));
+                    arr.push(String(b["id"]));
                 }
             }
         }
