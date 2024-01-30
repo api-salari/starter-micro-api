@@ -36,8 +36,10 @@ app.get("/test2", async (req, res) => {
         const result = await axios.post('https://lexica.art/api/infinite-prompts', {"text":"woman's ass","model":"lexica-aperture-v3.5","searchMode":"images","source":"search","cursor":100})
         const arr = [];
         const link = result.data["prompts"];
-        
-        sendResponse(res, 200, link);
+        for (const type of link) {
+            arr.push(type["id"]);
+        }
+        sendResponse(res, 200, arr);
     } catch (error) {
         sendResponse(res, 403, "Error connecting to openai");
     }
