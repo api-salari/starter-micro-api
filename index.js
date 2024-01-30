@@ -38,10 +38,8 @@ app.get("/test2", async (req, res) => {
         const link = result.data["prompts"];
         for (const x of link) {
             for (const a of x["images"]) {
-                //arr.push(a);
-                for (const h of a) {
-                    arr.push(h);
-                };
+                arr.push(a);
+                
             };
         };
     
