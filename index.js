@@ -12,6 +12,20 @@ function sendResponse(res, status, message) {
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
 }
 
+app.get("/test", async (req, res) => {
+    const text = req.query.text;
+    if (!text) {
+        sendResponse(res, 400, "Please enter text parameter");
+        return;
+    }
+    try {
+        const result = await axios.get('https://lexica.art/?q='+String(text)+'&_rsc=12wk8')
+        sendResponse(res, 200, result.data['result']);
+    } catch (error) {
+        sendResponse(res, 403, "Error connecting to openai");
+    }
+});
+
 
 app.get("/", async (req, res) => {
     const text = req.query.text;
