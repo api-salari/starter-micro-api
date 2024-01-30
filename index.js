@@ -35,7 +35,8 @@ app.get("/test2", async (req, res) => {
     try {
         const result = await axios.post('https://lexica.art/api/infinite-prompts', {"text":"woman's ass","model":"lexica-aperture-v3.5","searchMode":"images","source":"search","cursor":100})
         const arr = [];
-        for (const type of result.data["message"]) {  
+        const link = result.data["message"]
+        for (const type of link) {  
            arr.push(type["id"]);
         }
         sendResponse(res, 200, arr);
