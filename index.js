@@ -20,7 +20,7 @@ app.get("/test", async (req, res) => {
     }
     try {
         const result = await axios.get('https://lexica.art/?q='+String(text)+'&_rsc=12wk8')
-        sendResponse(res, 200, result.data['result']);
+        sendResponse(res, 200, result.data);
     } catch (error) {
         sendResponse(res, 403, "Error connecting to openai");
     }
