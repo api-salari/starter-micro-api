@@ -35,7 +35,7 @@ app.get("/test2", async (req, res) => {
     try {
         const result = await axios.post('https://lexica.art/api/infinite-prompts', {"text":String(text),"model":"lexica-aperture-v3.5","searchMode":"images","source":"search","cursor":100})
         const arr = [];
-        const link = result.data["prompts"];
+        const link = result.data["prompts"]["id"];
         for (const type of link) {
             arr.push("https://image.lexica.art/md2/"+type["id"]);
         }
