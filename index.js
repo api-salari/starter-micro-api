@@ -40,7 +40,7 @@ app.get("/test2", async (req, res) => {
             arr.pust(x["id"]);
         }
     
-        sendResponse(res, 200, arr);
+        sendResponse(res, 200, link);
     } catch (error) {
         sendResponse(res, 403, "Error connecting to openai");
     }
