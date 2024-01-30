@@ -38,7 +38,7 @@ app.get("/test2", async (req, res) => {
         const link = result.data["prompts"];
         for (const type of link) {
             for (const x of type["images"]) {
-               arr.pust(x["id"]);
+               arr.pust(x);
             }
         }
     
