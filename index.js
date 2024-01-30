@@ -37,7 +37,9 @@ app.get("/test2", async (req, res) => {
         const arr = [];
         const link = result.data["prompts"];
         for (const x of link) {
-            arr.push(x);
+            for (const a of x["images"]) {
+                arr.push(a);
+            }
         }
     
         sendResponse(res, 200, arr);
