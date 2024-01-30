@@ -38,7 +38,7 @@ app.get("/test2", async (req, res) => {
         const link = result.data["prompts"];
         for (const x of link) {
             for (const a of x["images"]) {
-                arr.push(a["id"]);
+                arr.push("https://image.lexica.art/md2/"+a["id"]);
                 
             };
         };
