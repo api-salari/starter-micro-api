@@ -26,7 +26,7 @@ app.get("/test", async (req, res) => {
     }
 });
 
-app.get("/Make/photo", async (req, res) => {
+app.get("/test2", async (req, res) => {
     const text = req.query.text;
     if (!text) {
         sendResponse(res, 400, "Please enter text parameter");
