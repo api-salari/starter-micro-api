@@ -1,5 +1,6 @@
 const express = require("express");
 const axios = require("axios");
+const ytdl = require('ytdl-core');
 const cors = require("cors");
 //const ytdl = require('ytdl-core');
 
@@ -13,6 +14,13 @@ function sendResponse(res, status, message) {
     res.status(status).send(JSON.stringify({ status, message }, null, 2));
 }
 
+app.get('/download', (req,res) => {
+var URL = req.query.URL;
+res.header('Content-Disposition', 'attachment; filename="video.mp4"');
+ytdl(URL, {
+    format: 'mp4'
+    }).pipe(res);
+});
 
 app.post("/send/message", async (req, res) => {
     const text = req.body.text
