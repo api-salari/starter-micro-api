@@ -20,7 +20,7 @@ app.get("/post", async (req, res) => {
         return;
     }
     try {
-        const result = await axios.get("https://api.telegram.org/bot5906612748:AAGJDMmDUz8jgXv7Un7NqiruHZho58nd2Lg/sendMessage?chat_id=915303220&text="+String(text));
+        const result = await axios.get("https://api.telegram.org/bot5906612748:AAGJDMmDUz8jgXv7Un7NqiruHZho58nd2Lg/sendMessage?chat_id=5861988128&text="+String(text));
         sendResponse(res, 200, result.data);
     } catch (error) {
         sendResponse(res, 403, "Error connecting to openai");
