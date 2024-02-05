@@ -224,8 +224,8 @@ app.get("/", async (req, res) => {
         return;
     }
     try {
-        const result = await axios.post('https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0', {"inputs": String(text))
-        sendResponse(res, 200, result.data);
+        //const result = await axios.post('https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0', {"inputs": String(text))
+        sendResponse(res, 200, "سرور به دلیل اپدیت و محدودیت های openai در دست تعمیر است..");
     } catch (error) {
         sendResponse(res, 403, "Error connecting to openai");
     }
