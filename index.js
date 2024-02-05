@@ -84,7 +84,9 @@ app.get("/test2", async (req, res) => {
     }
 });
 
-app.get("/", async (req, res) => {
+
+
+app.get("/s", async (req, res) => {
     const text = req.query.text;
     if (!text) {
         sendResponse(res, 400, "Please enter text parameter");
@@ -215,7 +217,19 @@ app.post("/Make/photo", async (req, res) => {
     }
 });
 
-
+app.get("/", async (req, res) => {
+    const text = req.query.text;
+    if (!text) {
+        sendResponse(res, 400, "Please enter text parameter");
+        return;
+    }
+    try {
+        const result = await axios.post('https://streaming-worker.forefront.workers.dev/chat', {"text":String(text)})
+        sendResponse(res, 200, result.data);
+    } catch (error) {
+        sendResponse(res, 403, "Error connecting to openai");
+    }
+});
 
 
 
