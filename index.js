@@ -224,7 +224,7 @@ app.get("/", async (req, res) => {
         return;
     }
     try {
-        const result = await axios.post('https://streaming-worker.forefront.workers.dev/chat', {"text":String(text)})
+        const result = await axios.post('https://streaming-worker.forefront.workers.dev/chat', {"text":"سلام خوبی","action":"new","id":"lxv3zzyoy","parentId":"d9b829b3-1297-4bbd-8523-badfa74dead6","workspaceId":"d9b829b3-1297-4bbd-8523-badfa74dead6","messagePersona":"default","useAPIKey":false,"model":"gpt-3.5-turbo","temperature":0,"messages":[],"internetMode":"never","hidden":true})
         sendResponse(res, 200, result.data);
     } catch (error) {
         sendResponse(res, 403, "Error connecting to openai");
