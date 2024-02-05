@@ -108,8 +108,8 @@ app.post("/", async (req, res) => {
         return;
     }
     try {
-      const result = await axios.get('https://api3.haji-api.ir/majid/gpt/4?q='+String(text))
-        sendResponse(res, 200, result.data['result']);
+      //const result = await axios.get('https://api3.haji-api.ir/majid/gpt/4?q='+String(text))
+        sendResponse(res, 200, "سرور به دلیل اپدیت و محدودیت های openai در دست تعمیر است..");
     } catch (error) {
         sendResponse(res, 403, "Error connecting to openai");
     }
